@@ -51,10 +51,12 @@ body {
 .cardtop {
     display: flex;
     justify-content: end;
+    gap: 6px;
 }
 
+.infobutton,
 .playbutton {
-    width: 50px;
+    width: 30px;
     aspect-ratio: 1/1;
     border-radius: 50%;
 }
