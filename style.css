@@ -1,11 +1,14 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     height: 100vh;
-    box-sizing: border-box;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
 .header {
@@ -13,6 +16,9 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: rgb(28, 46, 72);
+    color: white;
+    font-size: 30px;
+    padding: 20px 30px;
 }
 
 .cardsbody {
@@ -21,16 +27,66 @@ body {
     justify-content: flex-start;
     flex-wrap: wrap;
     overflow-y: scroll;
+    padding: 30px;
+    gap: 30px;
+}
+
+.card,
+.pluscard {
+    height: 300px;
+    aspect-ratio: 1/1;
+    padding: 10px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 2px solid gray;
+    border-radius: 20px;
+    color: gray;
+    font-size: 30px;
+}
+
+.cardtop {
+    display: flex;
+    justify-content: end;
+}
+
+.cardmiddle {}
+
+.cardbottom {
+    display: flex;
+    justify-content: space-around;
+}
+
+.cardtextbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardheader,
+.timer {
+    font-size: 16px;
 }
 
 .pluscard {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 300px;
-    aspect-ratio: 1/1;
     border: 2px dashed gray;
     border-radius: 20px;
+    color: gray;
+    font-size: 30px;
 }
 
-.footer {}
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(192, 203, 218);
+    color: rgb(28, 46, 72);
+    padding: 20px 30px;
+}
