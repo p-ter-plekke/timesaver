@@ -53,6 +53,12 @@ body {
     justify-content: end;
 }
 
+.playbutton {
+    width: 50px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+}
+
 .cardmiddle {}
 
 .cardbottom {
