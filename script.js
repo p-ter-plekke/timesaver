@@ -3,6 +3,12 @@ const circle = document.querySelector(".circle-ring");
 const circumference = 2 * Math.PI * Number(circle.getAttribute("r"));
 
 circle.style.strokeDasharray = circumference;
+circle.style.strokeDashoffset = circumference;
+
+const playButton = document.querySelector(".playbutton");
+const pauseButton = document.querySelector(".pausebutton");
+
+const delay = 1000;
 let progress = circumference;
 let intervalId = null;
 let isRunning = false;
@@ -17,14 +23,14 @@ function startTimer() {
     isRunning = true;
 
     intervalId = setInterval(() => {
-        progress -= (circumference / totalSeconds);
-        circle.style.strokeDashoffset = progress;
+        progress -= (circumference / totalSeconds); // after needed time circle is fully visible
+        circle.style.strokeDashoffset = progress; // the smaller progress the more you see the circle
 
         if (progress <= 0) {
             clearInterval(intervalId);
             isRunning = false;
         };
-    }, 1000); // update per seconde
+    }, delay); // update per second
 };
 
 function pauseTimer() {
@@ -33,6 +39,9 @@ function pauseTimer() {
     isRunning = false;
     clearInterval(intervalId);
 };
+
+playButton.addEventListener("click", startTimer);
+pauseButton.addEventListener("click", pauseTimer);
 
 
 
