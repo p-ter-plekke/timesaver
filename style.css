@@ -67,6 +67,8 @@ body {
 }
 
 .circle-ring {
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
     fill: none;
     stroke: lightgreen;
     stroke-width: 20;
