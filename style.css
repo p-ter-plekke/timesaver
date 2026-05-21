@@ -21,6 +21,16 @@ body {
     padding: 20px 30px;
 }
 
+.hourwage {
+    display: flex;
+    gap: 5px;
+}
+
+#inputwage {
+    width: 80px;
+    text-align: right;
+}
+
 .cardsbody {
     display: flex;
     flex: 1;

@@ -7,13 +7,14 @@ circle.style.strokeDashoffset = circumference;
 
 const playButton = document.querySelector(".playbutton");
 const pauseButton = document.querySelector(".pausebutton");
+const hourWage = Number(document.querySelector("#inputwage").value);
+const setWageButton = document.querySelector(".set-wage-button");
 
 const delay = 1000;
 let progress = circumference;
 let intervalId = null;
 let isRunning = false;
 
-const hourWage = 15;
 const price = 1;
 const totalSeconds = price / (hourWage / 3600);
 
