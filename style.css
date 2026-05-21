@@ -61,7 +61,16 @@ body {
     border-radius: 50%;
 }
 
-.cardmiddle {}
+.cardmiddle {
+    display: flex;
+    justify-content: center;
+}
+
+.circle-ring {
+    fill: none;
+    stroke: lightgreen;
+    stroke-width: 20;
+}
 
 .cardbottom {
     display: flex;
