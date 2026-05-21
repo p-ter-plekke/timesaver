@@ -4,18 +4,36 @@ const circumference = 2 * Math.PI * Number(circle.getAttribute("r"));
 
 circle.style.strokeDasharray = circumference;
 let progress = circumference;
-const hourWage = 5;
+let intervalId = null;
+let isRunning = false;
+
+const hourWage = 15;
 const price = 1;
 const totalSeconds = price / (hourWage / 3600);
 
-const interval = setInterval(() => {
-    progress -= (circumference / totalSeconds);
-    circle.style.strokeDashoffset = progress;
+function startTimer() {
+    if (isRunning) return;
 
-    if (progress <= 0) {
-        clearInterval(interval);
-    }
-}, 1000); // update per seconde
+    isRunning = true;
+
+    intervalId = setInterval(() => {
+        progress -= (circumference / totalSeconds);
+        circle.style.strokeDashoffset = progress;
+
+        if (progress <= 0) {
+            clearInterval(intervalId);
+            isRunning = false;
+        };
+    }, 1000); // update per seconde
+};
+
+function pauseTimer() {
+    if (isRunning == false) return;
+
+    isRunning = false;
+    clearInterval(intervalId);
+};
+
 
 
 
