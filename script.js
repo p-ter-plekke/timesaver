@@ -15,7 +15,7 @@ let goalTimer = document.querySelector("#goal-timer");
 
 let price = 0;
 let hourWage = 0;
-let totalSeconds = 0;
+let totalMinutes = 0;
 const delay = 1000;
 let progress = circumference;
 let intervalId = null;
@@ -23,18 +23,22 @@ let isRunning = false;
 
 setPriceButton.addEventListener("click", () => {
     price = Number(inputPriceBox.value);
-    totalSeconds = price / (hourWage / 3600);
+    calcMinutes();
     updateTimers();
 });
 
 setWageButton.addEventListener("click", () => {
     hourWage = Number(inputWageBox.value);
-    totalSeconds = price / (hourWage / 3600);
+    calcMinutes();
     updateTimers();
 });
 
+function calcMinutes() {
+    totalMinutes = price / (hourWage / 60);
+};
+
 function updateTimers() {
-    goalTimer.textContent = totalSeconds / 3600;
+    goalTimer.textContent = totalMinutes;
 };
 
 function startTimer() {
@@ -43,7 +47,7 @@ function startTimer() {
     isRunning = true;
 
     intervalId = setInterval(() => {
-        progress -= (circumference / totalSeconds); // after needed time circle is fully visible
+        progress -= (circumference / (totalMinutes * 60)); // after needed time circle is fully visible
         circle.style.strokeDashoffset = progress; // the smaller progress the more you see the circle
 
         if (progress <= 0) {
