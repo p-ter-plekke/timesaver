@@ -15,10 +15,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(28, 46, 72);
-    color: white;
+    color: black;
     font-size: 30px;
     padding: 20px 30px;
+}
+
+.header,
+.cardsbody {
+    background-color: rgb(243, 243, 243);
 }
 
 .hourwage {
@@ -57,17 +61,18 @@ body {
 .pluscard {
     height: 300px;
     aspect-ratio: 1/1;
-    padding: 10px;
+    padding: 15px;
 }
 
 .card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: 2px solid gray;
-    border-radius: 20px;
-    color: gray;
+    border-radius: 30px;
     font-size: 30px;
+    color: gray;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.05);
 }
 
 .infobutton,
@@ -88,7 +93,7 @@ body {
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
     fill: none;
-    stroke: lightgreen;
+    stroke: rgb(93, 84, 235);
     stroke-width: 20;
 }
 
@@ -106,7 +111,7 @@ body {
 
 .cardheader,
 .timer {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .pluscard {
