@@ -21,13 +21,13 @@ let progress = circumference;
 let intervalId = null;
 let isRunning = false;
 
-setPriceButton.addEventListener("click", () => {
+inputPriceBox.addEventListener("input", () => {
     price = Number(inputPriceBox.value);
     calcMinutes();
     updateTimers();
 });
 
-setWageButton.addEventListener("click", () => {
+inputWageBox.addEventListener("input", () => {
     hourWage = Number(inputWageBox.value);
     calcMinutes();
     updateTimers();

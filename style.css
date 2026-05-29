@@ -8,7 +8,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .header {
@@ -16,8 +17,12 @@ body {
     justify-content: space-between;
     align-items: center;
     color: black;
-    font-size: 30px;
     padding: 20px 30px;
+}
+
+.logo {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 35px;
 }
 
 .header,
@@ -112,6 +117,7 @@ body {
 .cardheader,
 .timer {
     font-size: 14px;
+    font-weight: 300;
 }
 
 .pluscard {
