@@ -20,6 +20,7 @@ const delay = 1000;
 let progress = circumference;
 let intervalId = null;
 let isRunning = false;
+let state = "pause";
 
 inputPriceBox.addEventListener("input", () => {
     price = Number(inputPriceBox.value);
@@ -69,8 +70,15 @@ function pauseTimer() {
     clearInterval(intervalId);
 };
 
-playButton.addEventListener("click", startTimer);
-pauseButton.addEventListener("click", pauseTimer);
+playButton.addEventListener("click", () => {
+    if (state === "pause") {
+        state = "play";
+        startTimer();
+    } else if (state === "play") {
+        state = "pause";
+        pauseTimer();
+    };
+});
 
 
 
