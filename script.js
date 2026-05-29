@@ -34,7 +34,7 @@ inputWageBox.addEventListener("input", () => {
 });
 
 function calcMinutes() {
-    totalMinutes = price / (hourWage / 60);
+    totalMinutes = Math.round(price / (hourWage / 60));
 };
 
 function updateTimers() {
