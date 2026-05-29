@@ -26,13 +26,23 @@ body {
 }
 
 .header,
-.cardsbody {
+.cardsbody,
+input#inputwage {
     background-color: rgb(243, 243, 243);
 }
 
 .hourwage {
     display: flex;
     gap: 5px;
+}
+
+input#inputwage {
+    font-size: 16px;
+    font-weight: 300;
+    text-align: left;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 50px;
+    border: none;
 }
 
 #inputwage,
@@ -44,12 +54,25 @@ body {
 .cardtop {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 300;
 }
 
 .price,
 .operator-buttons {
     display: flex;
     gap: 5px;
+}
+
+input#inputprice {
+    font-size: 18px;
+    font-weight: 300;
+    text-align: left;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: gray;
+    width: 50px;
+    border: none;
 }
 
 .cardsbody {
