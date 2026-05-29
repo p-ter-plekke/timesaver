@@ -6,16 +6,16 @@ circle.style.strokeDasharray = circumference;
 circle.style.strokeDashoffset = circumference;
 
 const inputPriceBox = document.querySelector("#inputprice");
-const setPriceButton = document.querySelector(".set-price-button");
 const inputWageBox = document.querySelector("#inputwage");
-const setWageButton = document.querySelector(".set-wage-button");
 const playButton = document.querySelector(".playbutton");
 const pauseButton = document.querySelector(".pausebutton");
-let goalTimer = document.querySelector("#goal-timer");
+const tracker = document.querySelector(".cardtracker");
 
 let price = 0;
 let hourWage = 0;
 let totalMinutes = 0;
+let elapsedSeconds = 0;
+let minLeft = 0;
 const delay = 1000;
 let progress = circumference;
 let intervalId = null;
@@ -38,7 +38,7 @@ function calcMinutes() {
 };
 
 function updateTimers() {
-    goalTimer.textContent = totalMinutes;
+    tracker.textContent = `${minLeft}m left`;
 };
 
 function startTimer() {
@@ -47,8 +47,13 @@ function startTimer() {
     isRunning = true;
 
     intervalId = setInterval(() => {
+        elapsedSeconds++;
         progress -= (circumference / (totalMinutes * 60)); // after needed time circle is fully visible
         circle.style.strokeDashoffset = progress; // the smaller progress the more you see the circle
+
+        const secondsLeft = (totalMinutes * 60) - elapsedSeconds;
+        minLeft = Math.ceil(secondsLeft / 60);
+        updateTimers();
 
         if (progress <= 0) {
             clearInterval(intervalId);

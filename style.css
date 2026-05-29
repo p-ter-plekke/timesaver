@@ -127,19 +127,15 @@ input#inputprice {
 
 .cardbottom {
     display: flex;
-    justify-content: space-around;
-}
-
-.cardtextbox {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.cardheader,
-.timer {
-    font-size: 14px;
+.cardtracker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
     font-weight: 300;
 }
 
