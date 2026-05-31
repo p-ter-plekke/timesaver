@@ -71,17 +71,17 @@ function pauseTimer() {
 
 playButton.addEventListener("click", () => {
     if (state === "pause") {
-        state = "play";
-        playButton.textContent = "\u23F8";
-        startTimer();
-    } else if (state === "play") {
-        if (price === "" && hourWage === "") {
+        if (price === "" || hourWage === "") {
             return;
         } else {
-            state = "pause";
-            playButton.textContent = "\u25B6";
-            pauseTimer();
+            state = "play";
+            playButton.textContent = "\u23F8";
+            startTimer();
         };
+    } else if (state === "play") {
+        state = "pause";
+        playButton.textContent = "\u25B6";
+        pauseTimer();
     };
 });
 
