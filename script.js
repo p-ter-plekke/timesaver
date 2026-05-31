@@ -8,11 +8,10 @@ circle.style.strokeDashoffset = circumference;
 const inputPriceBox = document.querySelector("#inputprice");
 const inputWageBox = document.querySelector("#inputwage");
 const playButton = document.querySelector(".playbutton");
-const pauseButton = document.querySelector(".pausebutton");
 const tracker = document.querySelector(".cardtracker");
 
-let price = 0;
-let hourWage = 0;
+let price = "";
+let hourWage = "";
 let totalMinutes = 0;
 let elapsedSeconds = 0;
 let minLeft = 0;
@@ -73,10 +72,16 @@ function pauseTimer() {
 playButton.addEventListener("click", () => {
     if (state === "pause") {
         state = "play";
+        playButton.textContent = "\u23F8";
         startTimer();
     } else if (state === "play") {
-        state = "pause";
-        pauseTimer();
+        if (price === "" && hourWage === "") {
+            return;
+        } else {
+            state = "pause";
+            playButton.textContent = "\u25B6";
+            pauseTimer();
+        };
     };
 });
 
