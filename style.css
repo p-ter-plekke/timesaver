@@ -119,6 +119,14 @@ input#inputprice {
 .cardmiddle {
     display: flex;
     justify-content: center;
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .circle-ring {
