@@ -90,6 +90,8 @@ playButton.addEventListener("click", () => {
 const openModalButtons = document.querySelectorAll("[data-modal-target]"); // as if there are more buttons to open modal
 const closeModalButtons = document.querySelectorAll("[data-close-button]"); // as if there are more buttons to open modal
 const overlay = document.getElementById("overlay");
+const modalBody = document.querySelector(".modal-body");
+let placeholderImg = document.querySelector(".icon-button");
 
 openModalButtons.forEach(button => {
     button.addEventListener("click", () => {
@@ -123,6 +125,12 @@ function closeModal(modal) {
     modal.classList.remove("active");
     overlay.classList.remove("active");
 };
+
+modalBody.addEventListener("click", (event) => {
+    let targetIcon = event.target;
+    placeholderImg.src = targetIcon.src;
+    closeModal(modal);
+});
 
 
 

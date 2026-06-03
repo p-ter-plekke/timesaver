@@ -132,6 +132,7 @@ input#inputprice {
 
 .icon-button {
     cursor: pointer;
+    width: 40px;
 }
 
 .circle-ring {
