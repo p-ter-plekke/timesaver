@@ -210,7 +210,14 @@ input#inputprice {
 }
 
 .modal-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     padding: 10px 15px;
+}
+
+.modal-body img {
+    width: 50px;
 }
 
 #overlay {
