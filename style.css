@@ -130,6 +130,10 @@ input#inputprice {
     transform: translate(-50%, -50%);
 }
 
+.icon-button {
+    cursor: pointer;
+}
+
 .circle-ring {
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
