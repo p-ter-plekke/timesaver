@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
     <title>Time Saver</title>
+    <link rel="stylesheet" href="./style.css">
+    <script defer src="./script.js"></script>
 </head>
 
 <body>
@@ -30,7 +31,9 @@
                 </div>
             </div>
             <div class="cardmiddle">
-                <div class="icon">[...]</div>
+                <div class="icon">
+                    <div class="icon-button">click</div>
+                </div>
                 <svg class="progress-timer" width="200" height="200">
                     <circle class="circle-ring" cx="100" cy="100" r="80" />
                 </svg>
@@ -46,8 +49,19 @@
     <div class="footer">
         Save minutes instead of money.
     </div>
-
-    <script type="text/javascript" src="./script.js"></script>
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <div class="title">Make your choice</div>
+            <button class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati cumque tempore minima
+            blanditiis. Aut assumenda, voluptatibus facilis aliquid odit ad quos architecto fugiat accusamus sint,
+            facere culpa illo ipsa maiores ipsum! Delectus quam totam tenetur quibusdam adipisci debitis quod quas
+            doloremque consequuntur libero earum, corporis tempore nostrum minima enim voluptates voluptatum animi? Iure
+            rem quo quasi, commodi itaque dolorum eveniet. Nihil vero beatae labore ipsa quod porro accusamus excepturi.
+            Eum nesciunt harum voluptatem doloremque, cumque necessitatibus libero nulla sunt vero!</div>
+    </div>
+    <div id="overlay"></div>
 </body>
 
 </html>
