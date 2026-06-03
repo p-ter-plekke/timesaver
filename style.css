@@ -108,6 +108,7 @@ input#inputprice {
 }
 
 .playbutton {
+    cursor: pointer;
     width: 30px;
     aspect-ratio: 1/1;
     border-radius: 50%;
@@ -180,12 +181,14 @@ input#inputprice {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
-    border: 1px solid black;
-    border-radius: 10px;
     z-index: 10;
-    background-color: white;
+    border: none;
+    border-radius: 30px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.1);
     width: 400px;
     max-width: 80%;
+
 }
 
 .modal.active {
@@ -193,11 +196,10 @@ input#inputprice {
 }
 
 .modal-header {
-    padding: 10px 15px;
+    padding: 10px 15px 0px 15px;
     display: flex;
-    justify-content: space-between;
+    justify-content: right;
     align-items: center;
-    border-bottom: 1px solid black;
 }
 
 .modal-header .title {
@@ -207,22 +209,28 @@ input#inputprice {
 
 .modal-header .close-button {
     cursor: pointer;
-    border: none;
     outline: none;
-    background: none;
     font-size: 1.25rem;
     font-weight: bold;
+    width: 30px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    text-align: center;
+    border: none;
+    color: rgb(123, 113, 231);
+    background-color: rgb(235, 234, 255);
 }
 
 .modal-body {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    padding: 10px 15px;
+    gap: 20px;
+    padding: 20px 25px;
 }
 
 .modal-body img {
-    width: 50px;
+    width: 40px;
+    cursor: pointer;
 }
 
 #overlay {
@@ -232,7 +240,7 @@ input#inputprice {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgb(0, 0, 0, .2);
+    background-color: rgb(0, 0, 0, .1);
     pointer-events: none;
 }
 
