@@ -85,6 +85,38 @@ playButton.addEventListener("click", () => {
     };
 });
 
+// modal
+
+const openModalButtons = document.querySelectorAll("[data-modal-target]"); // as if there are more buttons to open modal
+const closeModalButtons = document.querySelectorAll("[data-close-button]"); // as if there are more buttons to open modal
+const overlay = document.getElementById("overlay");
+
+openModalButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const modal = document.querySelector(button.dataset.modalTarget) // will camelcase name for us. will get #modal from html
+        openModal(modal);
+    });
+});
+
+closeModalButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const modal = button.closest(".modal");
+        closeModal(modal);
+    });
+});
+
+function openModal(modal) {
+    if (modal == null) return;
+    modal.classList.add("active");
+    overlay.classList.add("active");
+};
+
+function closeModal(modal) {
+    if (modal == null) return;
+    modal.classList.remove("active");
+    overlay.classList.remove("active");
+};
+
 
 
 
