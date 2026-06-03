@@ -82,6 +82,7 @@ input#inputprice {
     display: flex;
     flex: 1;
     justify-content: flex-start;
+    align-content: flex-start;
     flex-wrap: wrap;
     overflow-y: scroll;
     padding: 30px;
@@ -174,7 +175,6 @@ input#inputprice {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
-    display: none;
     border: 1px solid black;
     border-radius: 10px;
     z-index: 10;
