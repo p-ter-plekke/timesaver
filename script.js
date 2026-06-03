@@ -98,6 +98,13 @@ openModalButtons.forEach(button => {
     });
 });
 
+overlay.addEventListener("click", () => {
+    const modals = document.querySelectorAll(".modal.active");
+    modals.forEach(modal => {
+        closeModal(modal);
+    });
+});
+
 closeModalButtons.forEach(button => {
     button.addEventListener("click", () => {
         const modal = button.closest(".modal");
