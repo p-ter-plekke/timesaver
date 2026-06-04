@@ -136,11 +136,18 @@ input#inputprice {
     width: 40px;
 }
 
+.gray-ring {
+    transform-origin: 50% 50%;
+    fill: none;
+    stroke: rgb(245, 245, 245);
+    stroke-width: 20;
+}
+
 .circle-ring {
     transform: rotate(-90deg);
     transform-origin: 50% 50%;
     fill: none;
-    stroke: rgb(93, 84, 235);
+    stroke: rgb(86, 76, 228);
     stroke-width: 20;
 }
 
