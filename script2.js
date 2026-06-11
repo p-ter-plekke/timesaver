@@ -23,16 +23,11 @@ inputPrices.forEach(inputPrice => {
     // updateTimers();
 });
 
-let cardStates = {
-    1: {
-        price: "",
-    }
-};
-
 const plusButton = document.querySelector("[data-plus-button]")
 const cardBody = document.querySelector("[data-card-body]");
 const card = document.querySelector("[data-card]");
 let newId = 0;
+let cardStates = {};
 
 // add new card
 plusButton.addEventListener("click", () => {
@@ -41,6 +36,18 @@ plusButton.addEventListener("click", () => {
     newIdString = newId.toString();
     newCard.setAttribute("id", newIdString);
     cardBody.appendChild(newCard);
+
+    cardStates[newIdString] = {
+        isRunning: false,
+        state: pause,
+        price: 0,
+        icon: null,
+        totalMinutes: 0,
+        progress: 0,
+        elapsedSeconds: 0,
+        secondsLeft: 0,
+        minLeft: 0,
+    };
 });
 
 // alle buttons werkend maken:
