@@ -1,9 +1,7 @@
-let cardStates = {};
-const circle = document.querySelector(".circle-ring");
-const circumference = 2 * Math.PI * Number(circle.getAttribute("r"));
 
 // get hourly wage
 const inputHourlyWage = document.querySelector("[data-input-wage]");
+let hourlyWage = 0;
 
 inputHourlyWage.addEventListener("input", () => {
     hourlyWage = Number(inputHourlyWage.value);
@@ -13,6 +11,26 @@ const plusButton = document.querySelector("[data-plus-button]")
 const cardBody = document.querySelector("[data-card-body]");
 const card = document.querySelector("[data-card]");
 let newId = 0;
+const templateCircle = document.querySelector("[data-circle-ring]");
+const circumference = 2 * Math.PI * Number(templateCircle.getAttribute("r"));
+
+templateCircle.style.strokeDasharray = circumference;
+templateCircle.style.strokeDashoffset = circumference;
+
+let cardStates = {
+    0: {
+        isRunning: false,
+        intervalId: null,
+        state: "pause",
+        price: 0,
+        icon: null,
+        totalMinutes: 0,
+        progress: circumference,
+        elapsedSeconds: 0,
+        secondsLeft: 0,
+        minLeft: 0,
+    },
+};
 
 // add new card
 plusButton.addEventListener("click", () => {
@@ -25,7 +43,6 @@ plusButton.addEventListener("click", () => {
     cardStates[newIdString] = {
         isRunning: false,
         intervalId: null,
-        state: "pause",
         price: 0,
         icon: null,
         totalMinutes: 0,
@@ -52,9 +69,29 @@ cardBody.addEventListener("input", (event) => {
 cardBody.addEventListener("click", (event) => {
     const playButton = event.target.closest("[data-play-button]");
     if (!playButton) return;
-    const card = playButton.closest("[data-card]");
-    startTimer(card.getAttribute("id"));
+    const playCard = playButton.closest("[data-card]");
+    const playCardId = playCard.getAttribute("id");
+
+    if (cardStates[playCardId].isRunning == false) {
+        if (cardStates[playCardId].price === "" || hourlyWage === "") {
+            return;
+        } else {
+            playButton.textContent = "\u23F8";
+            startTimer(playCardId);
+        };
+    } else if (cardStates[playCardId].isRunning) {
+        cardStates[playCardId].isRunning = false;
+        playButton.textContent = "\u25B6";
+        pauseTimer(playCardId);
+    };
 });
+
+function pauseTimer(cardId) {
+    if (cardStates[cardId].isRunning == false) return;
+
+    cardStates[cardId].isRunning = false;
+    clearInterval(cardStates[cardId].intervalId);
+};
 
 function calcMinutes(cardId) {
     cardStates[cardId].totalMinutes = Math.round(cardStates[cardId].price / (hourlyWage / 60));
@@ -67,6 +104,8 @@ function updateTimers(cardId) {
 };
 
 function startTimer(cardId) {
+
+    calcMinutes(cardId);
 
     const thisCard = document.getElementById(cardId);
     const thisCircle = thisCard.querySelector("[data-circle-ring]");
@@ -90,5 +129,3 @@ function startTimer(cardId) {
         };
     }, 1000); // update per second
 };
-
-// functie bij toevoegen kaart die 1x wordt toegepast?
