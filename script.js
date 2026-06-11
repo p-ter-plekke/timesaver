@@ -134,12 +134,12 @@ modalBody.addEventListener("click", (event) => {
 
 // test clone node
 
-const cardsBody = document.querySelector(".card-body");
+const cardBody = document.querySelector(".card-body");
 const card = document.querySelector(".card");
 
 for (i = 0; i < 5; i++) {
     const copyCard = card.cloneNode(true);
-    cardsBody.appendChild(copyCard);
+    cardBody.appendChild(copyCard);
 };
 
 

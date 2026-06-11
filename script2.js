@@ -52,7 +52,6 @@ plusButton.addEventListener("click", () => {
         minLeft: 0,
     };
 
-    // van newCard wil ik de circle vinden.
     const newCardCircle = newCard.querySelector("[data-circle-ring]");
     newCardCircle.style.strokeDasharray = circumference;
     newCardCircle.style.strokeDashoffset = circumference;
@@ -63,13 +62,13 @@ cardBody.addEventListener("input", (event) => {
     if (!priceInput) return;
     const priceCard = priceInput.closest("[data-card]");
     const priceCardId = priceCard.getAttribute("id");
+
     cardStates[priceCardId].price = Number(priceInput.value);
 });
 
 cardBody.addEventListener("click", (event) => {
     const playButton = event.target.closest("[data-play-button]");
     if (!playButton) return;
-
     const playCard = playButton.closest("[data-card]");
     const playCardId = playCard.getAttribute("id");
 
@@ -128,3 +127,18 @@ function pauseTimer(cardId) {
     clearInterval(cardStates[cardId].intervalId);
     cardStates[cardId].isRunning = false;
 };
+
+// remove card
+cardBody.addEventListener("click", (event) => {
+    const deleteButton = event.target.closest("[data-delete-button]");
+    if (!deleteButton) return;
+    const deleteCard = deleteButton.closest("[data-card]");
+    const deleteCardId = deleteCard.getAttribute("id");
+
+    deleteCard.replaceChildren();
+    deleteCard.remove();
+    delete cardStates[deleteCardId];
+});
+
+// modal icon picker
+

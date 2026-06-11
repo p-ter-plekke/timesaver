@@ -115,15 +115,26 @@ input#input-price {
     box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.05);
 }
 
-.play-button {
+.play-button,
+.delete-button {
     cursor: pointer;
     width: 30px;
     aspect-ratio: 1/1;
     border-radius: 50%;
     text-align: center;
     border: none;
+}
+
+.play-button {
     color: rgb(123, 113, 231);
     background-color: rgb(235, 234, 255);
+}
+
+.delete-button {
+    color: rgb(179, 66, 66);
+    background-color: rgb(255, 202, 215);
+    font-weight: 200;
+    font-size: 20px;
 }
 
 .card-middle {
