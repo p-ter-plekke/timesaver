@@ -1,3 +1,5 @@
+
+// get hourly wage
 const inputHourlyWage = document.querySelector("[data-input-wage]");
 
 inputHourlyWage.addEventListener("input", () => {
@@ -6,7 +8,26 @@ inputHourlyWage.addEventListener("input", () => {
     // updateTimers();
 });
 
-let cardStates = {};
+// get input price (per card)
+const inputPrices = document.querySelectorAll("[data-input-price]");
+
+inputPrices.forEach(inputPrice => {
+    inputPrice.addEventListener("input", (event) => {
+        const targetInputPrice = event.target;
+        const priceInput = Number(targetInputPrice.value);
+        const priceCard = targetInputPrice.closest("[data-card]");
+        const priceId = priceCard.getAttribute("id");
+        cardStates[priceId].price = priceInput;
+    });
+    // calcMinutes();
+    // updateTimers();
+});
+
+let cardStates = {
+    1: {
+        price: "",
+    }
+};
 
 const plusButton = document.querySelector("[data-plus-button]")
 const cardBody = document.querySelector("[data-card-body]");
