@@ -41,6 +41,14 @@ plusButton.addEventListener("click", () => {
     newCardCircle.style.strokeDashoffset = circumference;
 });
 
+cardBody.addEventListener("input", (event) => {
+    const priceInput = event.target.closest("[data-input-price]");
+    if (!priceInput) return;
+    const priceCard = priceInput.closest("[data-card]");
+    const priceCardId = priceCard.getAttribute("id");
+    cardStates[priceCardId].price = Number(priceInput.value);
+});
+
 cardBody.addEventListener("click", (event) => {
     const playButton = event.target.closest("[data-play-button]");
     if (!playButton) return;
