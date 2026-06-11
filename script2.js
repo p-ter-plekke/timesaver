@@ -1,3 +1,4 @@
+let cardStates = {};
 
 // get hourly wage
 const inputHourlyWage = document.querySelector("[data-input-wage]");
@@ -27,7 +28,6 @@ const plusButton = document.querySelector("[data-plus-button]")
 const cardBody = document.querySelector("[data-card-body]");
 const card = document.querySelector("[data-card]");
 let newId = 0;
-let cardStates = {};
 
 // add new card
 plusButton.addEventListener("click", () => {
@@ -60,5 +60,36 @@ playButtons.forEach(playButton => {
         // startTimer runt op playCard.
     });
 });
+
+function calcMinutes(cardId) {
+    cardStates[cardId].totalMinutes = Math.round(cardStates[cardId].price / (hourlyWage / 60));
+};
+
+function updateTimers(cardId) {
+    const timerCard = document.getElementById(cardId);
+    const timerTarget = timerCard.querySelector("[data-card-tracker]");
+    timerTarget.textContent = `${minLeft}m left`;
+};
+
+function startTimer() {
+    if (isRunning) return;
+
+    isRunning = true;
+
+    intervalId = setInterval(() => {
+        elapsedSeconds++;
+        progress -= (circumference / (totalMinutes * 60)); // after needed time circle is fully visible
+        circle.style.strokeDashoffset = progress; // the smaller progress the more you see the circle
+
+        const secondsLeft = (totalMinutes * 60) - elapsedSeconds;
+        minLeft = Math.ceil(secondsLeft / 60);
+        updateTimers();
+
+        if (progress <= 0) {
+            clearInterval(intervalId);
+            isRunning = false;
+        };
+    }, delay); // update per second
+};
 
 // functie bij toevoegen kaart die 1x wordt toegepast?
