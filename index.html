@@ -6,43 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Time Saver</title>
     <link rel="stylesheet" href="./style.css">
-    <script defer src="./script.js"></script>
+    <script defer src="./script2.js"></script>
 </head>
 
 <body>
 
     <div class="header">
         <div class="logo">TimeSaver.</div>
+        <button data-plus-button>Add card</button>
         <div class="hour-wage">
             <div class="hourly-wage">Hourly wage:</div>
-            <input type="text" id="input-wage" />
+            <input type="text" id="input-wage" data-input-wage />
         </div>
     </div>
-    <div class="card-body">
-        <div class="card">
+    <div class="card-body" data-card-body>
+
+        <!-- card template -->
+        <div class="card" data-card>
             <div class="card-top">
                 <div class="price">
                     <div class="euro">€</div>
-                    <input type="text" id="input-price" />
+                    <input type="text" id="input-price" data-input-price />
                 </div>
                 <div class="operator-buttons">
-                    <button class="play-button">&#9658;</button>
+                    <button class="play-button" data-play-button>&#9658;</button>
                 </div>
             </div>
             <div class="card-middle">
                 <div class="icon-placeholder">
-                    <img data-modal-target="#modal" class="icon-button" src="./icons/image-plus.svg" alt="image-plus">
+                    <img data-modal-target="#modal" class="icon-button" data-icon-button src="./icons/image-plus.svg"
+                        alt="image-plus">
                     <!-- data-* allows different modals on same page with different buttons to open them. -->
                 </div>
                 <svg class="progress-timer" width="200" height="200">
                     <circle class="gray-ring" cx="100" cy="100" r="80" />
-                    <circle class="circle-ring" cx="100" cy="100" r="80" />
+                    <circle class="circle-ring" data-circle-ring cx="100" cy="100" r="80" />
                 </svg>
             </div>
             <div class="card-bottom">
-                <div class="card-tracker"></div>
+                <div class="card-tracker" data-card-tracker></div>
             </div>
         </div>
+
     </div>
     <div class="footer">
         Save minutes instead of money.
