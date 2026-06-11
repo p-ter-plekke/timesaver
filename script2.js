@@ -10,9 +10,9 @@ inputHourlyWage.addEventListener("input", () => {
 const plusButton = document.querySelector("[data-plus-button]")
 const cardBody = document.querySelector("[data-card-body]");
 const card = document.querySelector("[data-card]");
-let newId = 0;
 const templateCircle = document.querySelector("[data-circle-ring]");
 const circumference = 2 * Math.PI * Number(templateCircle.getAttribute("r"));
+let newId = 0;
 
 templateCircle.style.strokeDasharray = circumference;
 templateCircle.style.strokeDashoffset = circumference;
@@ -46,7 +46,7 @@ plusButton.addEventListener("click", () => {
         price: 0,
         icon: null,
         totalMinutes: 0,
-        progress: 0,
+        progress: circumference,
         elapsedSeconds: 0,
         secondsLeft: 0,
         minLeft: 0,
@@ -69,6 +69,7 @@ cardBody.addEventListener("input", (event) => {
 cardBody.addEventListener("click", (event) => {
     const playButton = event.target.closest("[data-play-button]");
     if (!playButton) return;
+
     const playCard = playButton.closest("[data-card]");
     const playCardId = playCard.getAttribute("id");
 
@@ -80,18 +81,10 @@ cardBody.addEventListener("click", (event) => {
             startTimer(playCardId);
         };
     } else if (cardStates[playCardId].isRunning) {
-        cardStates[playCardId].isRunning = false;
         playButton.textContent = "\u25B6";
         pauseTimer(playCardId);
     };
 });
-
-function pauseTimer(cardId) {
-    if (cardStates[cardId].isRunning == false) return;
-
-    cardStates[cardId].isRunning = false;
-    clearInterval(cardStates[cardId].intervalId);
-};
 
 function calcMinutes(cardId) {
     cardStates[cardId].totalMinutes = Math.round(cardStates[cardId].price / (hourlyWage / 60));
@@ -105,14 +98,13 @@ function updateTimers(cardId) {
 
 function startTimer(cardId) {
 
-    calcMinutes(cardId);
-
     const thisCard = document.getElementById(cardId);
     const thisCircle = thisCard.querySelector("[data-circle-ring]");
 
     if (cardStates[cardId].isRunning) return;
-
     cardStates[cardId].isRunning = true;
+
+    calcMinutes(cardId);
 
     cardStates[cardId].intervalId = setInterval(() => {
         cardStates[cardId].elapsedSeconds++;
@@ -128,4 +120,11 @@ function startTimer(cardId) {
             cardStates[cardId].isRunning = false;
         };
     }, 1000); // update per second
+};
+
+function pauseTimer(cardId) {
+    if (cardStates[cardId].isRunning == false) return;
+
+    clearInterval(cardStates[cardId].intervalId);
+    cardStates[cardId].isRunning = false;
 };
