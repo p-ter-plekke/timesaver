@@ -5,10 +5,10 @@ const circumference = 2 * Math.PI * Number(circle.getAttribute("r"));
 circle.style.strokeDasharray = circumference;
 circle.style.strokeDashoffset = circumference;
 
-const inputPriceBox = document.querySelector("#inputprice");
-const inputWageBox = document.querySelector("#inputwage");
-const playButton = document.querySelector(".playbutton");
-const tracker = document.querySelector(".cardtracker");
+const inputPriceBox = document.querySelector("#input-price");
+const inputWageBox = document.querySelector("#input-wage");
+const playButton = document.querySelector(".play-button");
+const tracker = document.querySelector(".card-tracker");
 
 let price = "";
 let hourWage = "";
@@ -88,14 +88,14 @@ playButton.addEventListener("click", () => {
 // modal
 
 const openModalButtons = document.querySelectorAll("[data-modal-target]"); // as if there are more buttons to open modal
-const closeModalButtons = document.querySelectorAll("[data-close-button]"); // as if there are more buttons to open modal
+const closeModalButtons = document.querySelectorAll("[data-close-button]"); // as if there are more buttons to close modal
 const overlay = document.getElementById("overlay");
 const modalBody = document.querySelector(".modal-body");
 let placeholderImg = document.querySelector(".icon-button");
 
 openModalButtons.forEach(button => {
     button.addEventListener("click", () => {
-        const modal = document.querySelector(button.dataset.modalTarget) // will camelcase name for us. will get #modal from html
+        const modal = document.querySelector(button.dataset.modalTarget) // will camelcase name for us. will get element with id #modal from html
         openModal(modal);
     });
 });
@@ -131,6 +131,18 @@ modalBody.addEventListener("click", (event) => {
     placeholderImg.src = targetIcon.src;
     closeModal(modal);
 });
+
+// test clone node
+
+const cardsBody = document.querySelector(".card-body");
+const card = document.querySelector(".card");
+
+for (i = 0; i < 5; i++) {
+    const copyCard = card.cloneNode(true);
+    cardsBody.appendChild(copyCard);
+};
+
+
 
 
 

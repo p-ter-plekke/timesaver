@@ -26,18 +26,18 @@ body {
 }
 
 .header,
-.cardsbody,
-input#inputwage,
+.card-body,
+input#input-wage,
 .footer {
     background-color: rgb(243, 243, 243);
 }
 
-.hourwage {
+.hour-wage {
     display: flex;
     gap: 5px;
 }
 
-input#inputwage {
+input#input-wage {
     font-size: 16px;
     font-weight: 300;
     text-align: left;
@@ -47,13 +47,13 @@ input#inputwage {
     border-radius: 5px;
 }
 
-#inputwage,
-#inputprice {
+#input-wage,
+#input-price {
     width: 80px;
     text-align: right;
 }
 
-.cardtop {
+.card-top {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -67,7 +67,7 @@ input#inputwage {
     gap: 5px;
 }
 
-input#inputprice {
+input#input-price {
     font-size: 18px;
     font-weight: 300;
     text-align: left;
@@ -78,7 +78,7 @@ input#inputprice {
     border-radius: 5px;
 }
 
-.cardsbody {
+.card-body {
     display: flex;
     flex: 1;
     justify-content: flex-start;
@@ -89,17 +89,13 @@ input#inputprice {
     gap: 30px;
 }
 
-.card,
-.pluscard {
-    height: 300px;
-    aspect-ratio: 1/1;
-    padding: 15px;
-}
-
 .card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 300px;
+    aspect-ratio: 1/1;
+    padding: 15px;
     border-radius: 30px;
     font-size: 30px;
     color: gray;
@@ -107,7 +103,7 @@ input#inputprice {
     box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.05);
 }
 
-.playbutton {
+.play-button {
     cursor: pointer;
     width: 30px;
     aspect-ratio: 1/1;
@@ -118,7 +114,7 @@ input#inputprice {
     background-color: rgb(235, 234, 255);
 }
 
-.cardmiddle {
+.card-middle {
     display: flex;
     justify-content: center;
     position: relative;
@@ -151,28 +147,18 @@ input#inputprice {
     stroke-width: 20;
 }
 
-.cardbottom {
+.card-bottom {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.cardtracker {
+.card-tracker {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 16px;
     font-weight: 300;
-}
-
-.pluscard {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px dashed gray;
-    border-radius: 20px;
-    color: gray;
-    font-size: 30px;
 }
 
 .footer {
