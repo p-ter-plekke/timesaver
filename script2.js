@@ -1,10 +1,19 @@
+const inputHourlyWage = document.querySelector("[data-input-wage]");
+
+inputHourlyWage.addEventListener("input", () => {
+    hourlyWage = Number(inputHourlyWage.value);
+    // calcMinutes();
+    // updateTimers();
+});
+
 let cardStates = {};
-let newId = 0;
 
 const plusButton = document.querySelector("[data-plus-button]")
 const cardBody = document.querySelector("[data-card-body]");
 const card = document.querySelector("[data-card]");
+let newId = 0;
 
+// add new card
 plusButton.addEventListener("click", () => {
     const newCard = card.cloneNode(true);
     newId += 1;
