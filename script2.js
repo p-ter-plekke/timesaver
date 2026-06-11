@@ -1,27 +1,12 @@
 let cardStates = {};
+const circle = document.querySelector(".circle-ring");
+const circumference = 2 * Math.PI * Number(circle.getAttribute("r"));
 
 // get hourly wage
 const inputHourlyWage = document.querySelector("[data-input-wage]");
 
 inputHourlyWage.addEventListener("input", () => {
     hourlyWage = Number(inputHourlyWage.value);
-    // calcMinutes();
-    // updateTimers();
-});
-
-// get input price (per card)
-const inputPrices = document.querySelectorAll("[data-input-price]");
-
-inputPrices.forEach(inputPrice => {
-    inputPrice.addEventListener("input", (event) => {
-        const targetInputPrice = event.target;
-        const priceInput = Number(targetInputPrice.value);
-        const priceCard = targetInputPrice.closest("[data-card]");
-        const priceId = priceCard.getAttribute("id");
-        cardStates[priceId].price = priceInput;
-    });
-    // calcMinutes();
-    // updateTimers();
 });
 
 const plusButton = document.querySelector("[data-plus-button]")
@@ -39,7 +24,8 @@ plusButton.addEventListener("click", () => {
 
     cardStates[newIdString] = {
         isRunning: false,
-        state: pause,
+        intervalId: null,
+        state: "pause",
         price: 0,
         icon: null,
         totalMinutes: 0,
@@ -48,17 +34,22 @@ plusButton.addEventListener("click", () => {
         secondsLeft: 0,
         minLeft: 0,
     };
-});
 
-// alle buttons werkend maken:
-const playButtons = document.querySelectorAll("[data-play-button]");
-
-playButtons.forEach(playButton => {
-    playButton.addEventListener("click", (event) => {
-        targetPlayButton = event.target;
-        const playCard = targetPlayButton.closest("[data-card]");
-        // startTimer runt op playCard.
+    // add event listener to new price input box.
+    const newPriceInput = newCard.querySelector("[data-input-price]");
+    newPriceInput.addEventListener("input", () => {
+        cardStates[newIdString].price = Number(newPriceInput.value);
     });
+
+    const newPlayButton = newCard.querySelector("[data-play-button");
+    newPlayButton.addEventListener("click", () => {
+        startTimer(newIdString)
+    });
+
+    // van newCard wil ik de circle vinden.
+    const newCardCircle = newCard.querySelector("[data-circle-ring]");
+    newCardCircle.style.strokeDasharray = circumference;
+    newCardCircle.style.strokeDashoffset = circumference;
 });
 
 function calcMinutes(cardId) {
@@ -68,28 +59,32 @@ function calcMinutes(cardId) {
 function updateTimers(cardId) {
     const timerCard = document.getElementById(cardId);
     const timerTarget = timerCard.querySelector("[data-card-tracker]");
-    timerTarget.textContent = `${minLeft}m left`;
+    timerTarget.textContent = `${cardStates[cardId].minLeft}m left`;
 };
 
-function startTimer() {
-    if (isRunning) return;
+function startTimer(cardId) {
 
-    isRunning = true;
+    const thisCard = document.getElementById(cardId);
+    const thisCircle = thisCard.querySelector("[data-circle-ring]");
 
-    intervalId = setInterval(() => {
-        elapsedSeconds++;
-        progress -= (circumference / (totalMinutes * 60)); // after needed time circle is fully visible
-        circle.style.strokeDashoffset = progress; // the smaller progress the more you see the circle
+    if (cardStates[cardId].isRunning) return;
 
-        const secondsLeft = (totalMinutes * 60) - elapsedSeconds;
-        minLeft = Math.ceil(secondsLeft / 60);
-        updateTimers();
+    cardStates[cardId].isRunning = true;
 
-        if (progress <= 0) {
-            clearInterval(intervalId);
-            isRunning = false;
+    cardStates[cardId].intervalId = setInterval(() => {
+        cardStates[cardId].elapsedSeconds++;
+        cardStates[cardId].progress -= (circumference / (cardStates[cardId].totalMinutes * 60)); // after needed time circle is fully visible
+        thisCircle.style.strokeDashoffset = cardStates[cardId].progress; // the smaller progress the more you see the circle
+
+        const secondsLeft = (cardStates[cardId].totalMinutes * 60) - cardStates[cardId].elapsedSeconds;
+        cardStates[cardId].minLeft = Math.ceil(secondsLeft / 60);
+        updateTimers(cardId);
+
+        if (cardStates[cardId].progress <= 0) {
+            clearInterval(cardStates[cardId].intervalId);
+            cardStates[cardId].isRunning = false;
         };
-    }, delay); // update per second
+    }, 1000); // update per second
 };
 
 // functie bij toevoegen kaart die 1x wordt toegepast?
