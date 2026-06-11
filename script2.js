@@ -35,21 +35,17 @@ plusButton.addEventListener("click", () => {
         minLeft: 0,
     };
 
-    // add event listener to new price input box.
-    const newPriceInput = newCard.querySelector("[data-input-price]");
-    newPriceInput.addEventListener("input", () => {
-        cardStates[newIdString].price = Number(newPriceInput.value);
-    });
-
-    const newPlayButton = newCard.querySelector("[data-play-button");
-    newPlayButton.addEventListener("click", () => {
-        startTimer(newIdString)
-    });
-
     // van newCard wil ik de circle vinden.
     const newCardCircle = newCard.querySelector("[data-circle-ring]");
     newCardCircle.style.strokeDasharray = circumference;
     newCardCircle.style.strokeDashoffset = circumference;
+});
+
+cardBody.addEventListener("click", (event) => {
+    const playButton = event.target.closest("[data-play-button]");
+    if (!playButton) return;
+    const card = playButton.closest("[data-card]");
+    startTimer(card.getAttribute("id"));
 });
 
 function calcMinutes(cardId) {
