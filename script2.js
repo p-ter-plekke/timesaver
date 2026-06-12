@@ -27,7 +27,6 @@ let cardStates = {
     "card-0": {
         isRunning: false,
         intervalId: null,
-        state: "pause",
         price: "",
         icon: null,
         totalMinutes: 0,
@@ -82,7 +81,22 @@ cardBody.addEventListener("click", (event) => {
         if (cardStates[playCardId].price === "" || hourlyWage === "") {
             return;
         } else {
+            Object.keys(cardStates).forEach(id => {
+                if (id !== playCardId && cardStates[id].isRunning) {
+                    const otherCard = document.getElementById(id);
+                    const otherPlayButton = otherCard.querySelector("[data-play-button]");
+                    otherPlayButton.textContent = "\u25B6";
+                    otherCard.classList.remove("playing");
+                    pauseTimer(id);
+                };
+            });
+
             playButton.textContent = "\u23F8";
+            const allCards = document.querySelectorAll("[data-card]");
+            allCards.forEach(card => {
+                card.classList.remove("playing");
+            });
+            playCard.classList.add("playing");
             startTimer(playCardId);
         };
     } else if (cardStates[playCardId].isRunning) {
