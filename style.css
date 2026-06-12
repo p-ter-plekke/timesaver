@@ -137,6 +137,10 @@ input#input-price {
     font-size: 20px;
 }
 
+#card-0 .delete-button {
+    display: none;
+}
+
 .card-middle {
     display: flex;
     justify-content: center;
