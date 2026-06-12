@@ -126,18 +126,23 @@ function startTimer(cardId) {
     calcMinutes(cardId);
 
     cardStates[cardId].intervalId = setInterval(() => {
+
         cardStates[cardId].elapsedSeconds++;
         cardStates[cardId].progress -= (circumference / (cardStates[cardId].totalMinutes * 60)); // after needed time circle is fully visible
+
+        if (cardStates[cardId].progress <= 0) {
+            thisCircle.style.strokeDashoffset = 0;
+            clearInterval(cardStates[cardId].intervalId);
+            cardStates[cardId].isRunning = false;
+            return;
+        };
+
         thisCircle.style.strokeDashoffset = cardStates[cardId].progress; // the smaller progress the more you see the circle
 
         const secondsLeft = (cardStates[cardId].totalMinutes * 60) - cardStates[cardId].elapsedSeconds;
         cardStates[cardId].minLeft = Math.ceil(secondsLeft / 60);
         updateTimers(cardId);
 
-        if (cardStates[cardId].progress <= 0) {
-            clearInterval(cardStates[cardId].intervalId);
-            cardStates[cardId].isRunning = false;
-        };
     }, 1000); // update per second
 };
 
