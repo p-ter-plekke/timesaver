@@ -151,11 +151,15 @@ function pauseTimer(cardId) {
 // remove card
 cardBody.addEventListener("click", (event) => {
     const deleteButton = event.target.closest("[data-delete-button]");
+    console.log("delete clicked", deleteButton);
     if (!deleteButton) return;
+
+    const confirmed = confirm("Are you sure you want to remove this card?");
+    if (!confirmed) return;
+
     const deleteCard = deleteButton.closest("[data-card]");
     const deleteCardId = deleteCard.getAttribute("id");
 
-    deleteCard.replaceChildren();
     deleteCard.remove();
     delete cardStates[deleteCardId];
 });
