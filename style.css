@@ -65,6 +65,10 @@ input#input-wage {
     text-align: right;
 }
 
+#card-template {
+    display: none;
+}
+
 .card-top {
     display: flex;
     justify-content: space-between;
@@ -135,10 +139,6 @@ input#input-price {
     background-color: rgb(255, 202, 215);
     font-weight: 200;
     font-size: 20px;
-}
-
-#card-0 .delete-button {
-    display: none;
 }
 
 .card-middle {

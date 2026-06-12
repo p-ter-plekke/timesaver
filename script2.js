@@ -7,18 +7,24 @@ inputHourlyWage.addEventListener("input", () => {
     hourlyWage = Number(inputHourlyWage.value);
 });
 
+const cardTemplate = document.getElementById("card-template");
+const templateCircle = cardTemplate.querySelector("[data-circle-ring]");
+const cardVisible = document.getElementById("card-0");
+const visibleCircle = cardVisible.querySelector("[data-circle-ring");
+
+const circumference = 2 * Math.PI * Number(templateCircle.getAttribute("r"));
+
 const plusButton = document.querySelector("[data-plus-button]")
 const cardBody = document.querySelector("[data-card-body]");
-const card = document.querySelector("[data-card]");
-const templateCircle = document.querySelector("[data-circle-ring]");
-const circumference = 2 * Math.PI * Number(templateCircle.getAttribute("r"));
 let newId = 0;
 
 templateCircle.style.strokeDasharray = circumference;
 templateCircle.style.strokeDashoffset = circumference;
+visibleCircle.style.strokeDasharray = circumference;
+visibleCircle.style.strokeDashoffset = circumference;
 
 let cardStates = {
-    0: {
+    "card-0": {
         isRunning: false,
         intervalId: null,
         state: "pause",
@@ -34,7 +40,7 @@ let cardStates = {
 
 // add new card
 plusButton.addEventListener("click", () => {
-    const newCard = card.cloneNode(true);
+    const newCard = cardTemplate.cloneNode(true);
     newId += 1;
     newIdString = `card-${newId.toString()}`;
     newCard.setAttribute("id", newIdString);
