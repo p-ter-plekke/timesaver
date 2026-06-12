@@ -35,7 +35,7 @@
             </div>
             <div class="card-middle">
                 <div class="icon-placeholder">
-                    <img data-modal-target="#modal" class="icon-button" data-icon-button src="./icons/image-plus.svg"
+                    <img data-open-modal="#modal" class="icon-button" data-icon-button src="./icons/image-plus.svg"
                         alt="image-plus">
                     <!-- data-* allows different modals on same page with different buttons to open them. -->
                 </div>
@@ -55,9 +55,9 @@
     </div>
     <div class="modal" id="modal">
         <div class="modal-header">
-            <button data-close-button class="close-button">&times;</button>
+            <button data-close-modal class="close-button">&times;</button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" data-modal-body>
             <img class="icon" src="./icons/apple.svg" alt="apple">
             <img class="icon" src="./icons/armchair.svg" alt="armchair">
             <img class="icon" src="./icons/balloon.svg" alt="balloon">

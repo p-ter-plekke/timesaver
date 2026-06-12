@@ -142,3 +142,52 @@ cardBody.addEventListener("click", (event) => {
 
 // modal icon picker
 
+const openModalButtons = document.querySelectorAll("[data-open-modal]"); // as if there are more buttons to open modal
+const closeModalButtons = document.querySelectorAll("[data-close-modal]"); // as if there are more buttons to close modal
+const overlay = document.getElementById("overlay");
+const modalBody = document.querySelector("[data-modal-body]");
+let placeholderImg = "";
+
+cardBody.addEventListener("click", (event) => {
+    const openIconModal = event.target.closest("[data-open-modal]");
+    placeholderImg = openIconModal;
+    if (!openIconModal) return;
+    placeholderImg = openIconModal;
+    const modal = document.querySelector(openIconModal.dataset.openModal);
+    openModal(modal);
+});
+
+closeModalButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const modal = button.closest(".modal");
+        closeModal(modal);
+        placeholderImg = "";
+    });
+});
+
+// close modal when clicking on overlay
+overlay.addEventListener("click", () => {
+    const modals = document.querySelectorAll(".modal.active");
+    modals.forEach(modal => {
+        closeModal(modal);
+        placeholderImg = "";
+    });
+});
+
+function openModal(modal) {
+    if (modal == null) return;
+    modal.classList.add("active");
+    overlay.classList.add("active");
+};
+
+function closeModal(modal) {
+    if (modal == null) return;
+    modal.classList.remove("active");
+    overlay.classList.remove("active");
+};
+
+modalBody.addEventListener("click", (event) => {
+    let targetIcon = event.target;
+    placeholderImg.src = targetIcon.src;
+    closeModal(modal);
+});
