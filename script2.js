@@ -1,7 +1,7 @@
 
 // get hourly wage
 const inputHourlyWage = document.querySelector("[data-input-wage]");
-let hourlyWage = 0;
+let hourlyWage = "";
 
 inputHourlyWage.addEventListener("input", () => {
     hourlyWage = Number(inputHourlyWage.value);
@@ -28,7 +28,7 @@ let cardStates = {
         isRunning: false,
         intervalId: null,
         state: "pause",
-        price: 0,
+        price: "",
         icon: null,
         totalMinutes: 0,
         progress: circumference,
@@ -49,7 +49,7 @@ plusButton.addEventListener("click", () => {
     cardStates[newIdString] = {
         isRunning: false,
         intervalId: null,
-        price: 0,
+        price: "",
         icon: null,
         totalMinutes: 0,
         progress: circumference,
