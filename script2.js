@@ -36,7 +36,7 @@ let cardStates = {
 plusButton.addEventListener("click", () => {
     const newCard = card.cloneNode(true);
     newId += 1;
-    newIdString = newId.toString();
+    newIdString = `card-${newId.toString()}`;
     newCard.setAttribute("id", newIdString);
     cardBody.appendChild(newCard);
 
