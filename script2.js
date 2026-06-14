@@ -121,6 +121,9 @@ function startTimer(cardId) {
 
     const thisCard = document.getElementById(cardId);
     const thisCircle = thisCard.querySelector("[data-circle-ring]");
+    const thisPriceInput = thisCard.querySelector("[data-input-price]");
+    thisPriceInput.disabled = true;
+    inputHourlyWage.disabled = true;
 
     if (cardStates[cardId].isRunning) return;
     cardStates[cardId].isRunning = true;
@@ -168,12 +171,15 @@ function pauseTimer(cardId) {
 
     clearInterval(cardStates[cardId].intervalId);
     cardStates[cardId].isRunning = false;
+    const thisCard = document.getElementById(cardId);
+    const thisPriceInput = thisCard.querySelector("[data-input-price]");
+    thisPriceInput.disabled = false;
+    inputHourlyWage.disabled = false;
 };
 
 // remove card
 cardBody.addEventListener("click", (event) => {
     const deleteButton = event.target.closest("[data-delete-button]");
-    console.log("delete clicked", deleteButton);
     if (!deleteButton) return;
 
     const confirmed = confirm("Are you sure you want to remove this card?");
