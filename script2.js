@@ -26,6 +26,7 @@ visibleCircle.style.strokeDashoffset = circumference;
 let cardStates = {
     "card-0": {
         isRunning: false,
+        hasStarted: false,
         intervalId: null,
         price: "",
         icon: null,
@@ -47,6 +48,7 @@ plusButton.addEventListener("click", () => {
 
     cardStates[newIdString] = {
         isRunning: false,
+        hasStarted: false,
         intervalId: null,
         price: "",
         icon: null,
@@ -124,6 +126,21 @@ function startTimer(cardId) {
     cardStates[cardId].isRunning = true;
 
     calcMinutes(cardId);
+
+    if (cardStates[cardId].hasStarted) {
+        if (cardStates[cardId].hasStarted) {
+            cardStates[cardId].progress = circumference - (circumference * (cardStates[cardId].elapsedSeconds / (cardStates[cardId].totalMinutes * 60)));
+            if (cardStates[cardId].progress <= 0) {
+                thisCircle.style.strokeDashoffset = 0;
+                cardStates[cardId].isRunning = false;
+                return;
+            } else {
+                thisCircle.style.strokeDashoffset = cardStates[cardId].progress;
+            };
+        };
+    };
+
+    cardStates[cardId].hasStarted = true;
 
     cardStates[cardId].intervalId = setInterval(() => {
 
