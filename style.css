@@ -124,6 +124,7 @@ input#input-price {
 }
 
 .play-button,
+.restart-button,
 .delete-button {
     cursor: pointer;
     width: 30px;
@@ -136,6 +137,13 @@ input#input-price {
 .play-button {
     color: rgb(123, 113, 231);
     background-color: rgb(235, 234, 255);
+}
+
+.restart-button {
+    color: rgb(211, 91, 48);
+    background-color: rgb(255, 207, 183);
+    font-weight: 200;
+    font-size: 20px;
 }
 
 .delete-button {

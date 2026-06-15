@@ -29,7 +29,6 @@ let cardStates = {
         hasStarted: false,
         intervalId: null,
         price: "",
-        icon: null,
         totalMinutes: 0,
         progress: circumference,
         elapsedSeconds: 0,
@@ -37,6 +36,15 @@ let cardStates = {
         minLeft: 0,
     },
 };
+
+cardBody.addEventListener("input", (event) => {
+    const priceInput = event.target.closest("[data-input-price]");
+    if (!priceInput) return;
+    const priceCard = priceInput.closest("[data-card]");
+    const priceCardId = priceCard.getAttribute("id");
+
+    cardStates[priceCardId].price = Number(priceInput.value);
+});
 
 // add new card
 plusButton.addEventListener("click", () => {
@@ -51,7 +59,6 @@ plusButton.addEventListener("click", () => {
         hasStarted: false,
         intervalId: null,
         price: "",
-        icon: null,
         totalMinutes: 0,
         progress: circumference,
         elapsedSeconds: 0,
@@ -62,15 +69,6 @@ plusButton.addEventListener("click", () => {
     const newCardCircle = newCard.querySelector("[data-circle-ring]");
     newCardCircle.style.strokeDasharray = circumference;
     newCardCircle.style.strokeDashoffset = circumference;
-});
-
-cardBody.addEventListener("input", (event) => {
-    const priceInput = event.target.closest("[data-input-price]");
-    if (!priceInput) return;
-    const priceCard = priceInput.closest("[data-card]");
-    const priceCardId = priceCard.getAttribute("id");
-
-    cardStates[priceCardId].price = Number(priceInput.value);
 });
 
 cardBody.addEventListener("click", (event) => {
@@ -114,7 +112,7 @@ function calcMinutes(cardId) {
 function updateTimers(cardId) {
     const timerCard = document.getElementById(cardId);
     const timerTarget = timerCard.querySelector("[data-card-tracker]");
-    timerTarget.textContent = `${cardStates[cardId].minLeft}m left`;
+    timerTarget.textContent = `${cardStates[cardId].minLeft} min left`;
 };
 
 function startTimer(cardId) {
@@ -190,6 +188,43 @@ cardBody.addEventListener("click", (event) => {
 
     deleteCard.remove();
     delete cardStates[deleteCardId];
+});
+
+// restart card
+cardBody.addEventListener("click", (event) => {
+    const restartButton = event.target.closest("[data-restart-button]");
+    if (!restartButton) return;
+
+    const confirmed = confirm("Are you sure you want to restart this card?");
+    if (!confirmed) return;
+
+    const restartCard = restartButton.closest("[data-card]");
+    const restartCardId = restartCard.getAttribute("id");
+    const restartCircle = restartCard.querySelector("[data-circle-ring]");
+    const restartInput = restartCard.querySelector("[data-input-price]");
+    const restartPlayBtn = restartCard.querySelector("[data-play-button]");
+    const restartTracker = restartCard.querySelector("[data-card-tracker]");
+    const savedPrice = cardStates[restartCardId].price;
+
+    clearInterval(cardStates[restartCardId].intervalId);
+
+    cardStates[restartCardId] = {
+        isRunning: false,
+        hasStarted: false,
+        intervalId: null,
+        price: savedPrice,
+        totalMinutes: 0,
+        progress: circumference,
+        elapsedSeconds: 0,
+        secondsLeft: 0,
+        minLeft: 0,
+    };
+
+    restartCircle.style.strokeDashoffset = circumference;
+    restartCard.classList.remove("playing");
+    restartPlayBtn.textContent = "\u25B6";
+    restartInput.disabled = false;
+    restartTracker.textContent = "-- min left";
 });
 
 // modal icon picker
