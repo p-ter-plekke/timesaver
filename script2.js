@@ -76,9 +76,21 @@ cardBody.addEventListener("click", (event) => {
     if (!playButton) return;
     const playCard = playButton.closest("[data-card]");
     const playCardId = playCard.getAttribute("id");
+    const playCardInput = playCard.querySelector("[data-input-price]");
 
     if (cardStates[playCardId].isRunning == false) {
-        if (cardStates[playCardId].price === "" || hourlyWage === "") {
+        if (!cardStates[playCardId].price || !hourlyWage) {
+            alert("Please enter numbers for price and wage (e.g. 12 or 24.99).");
+            if (!cardStates[playCardId].price) {
+                playCardInput.value = "";
+                cardStates[playCardId].price = "";
+            };
+            if (!hourlyWage) {
+                inputHourlyWage.value = "";
+                hourlyWage = "";
+            };
+            return;
+        } else if (cardStates[playCardId].price === "" || hourlyWage === "") {
             return;
         } else {
             Object.keys(cardStates).forEach(id => {
