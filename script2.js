@@ -50,7 +50,7 @@ cardBody.addEventListener("input", (event) => {
 plusButton.addEventListener("click", () => {
     const newCard = cardTemplate.cloneNode(true);
     newId += 1;
-    newIdString = `card-${newId.toString()}`;
+    const newIdString = `card-${newId.toString()}`;
     newCard.setAttribute("id", newIdString);
     cardBody.appendChild(newCard);
 
@@ -141,20 +141,17 @@ function startTimer(cardId) {
     calcMinutes(cardId);
 
     if (cardStates[cardId].hasStarted) {
-        if (cardStates[cardId].hasStarted) {
-            cardStates[cardId].progress = circumference - (circumference * (cardStates[cardId].elapsedSeconds / (cardStates[cardId].totalMinutes * 60)));
-            if (cardStates[cardId].progress <= 0) {
-                thisCircle.style.strokeDashoffset = 0;
-                cardStates[cardId].isRunning = false;
-                return;
-            } else {
-                thisCircle.style.strokeDashoffset = cardStates[cardId].progress;
-            };
+        cardStates[cardId].progress = circumference - (circumference * (cardStates[cardId].elapsedSeconds / (cardStates[cardId].totalMinutes * 60)));
+        if (cardStates[cardId].progress <= 0) {
+            thisCircle.style.strokeDashoffset = 0;
+            cardStates[cardId].isRunning = false;
+            return;
+        } else {
+            thisCircle.style.strokeDashoffset = cardStates[cardId].progress;
         };
     };
 
     cardStates[cardId].hasStarted = true;
-
     cardStates[cardId].intervalId = setInterval(() => {
 
         cardStates[cardId].elapsedSeconds++;
@@ -198,6 +195,7 @@ cardBody.addEventListener("click", (event) => {
     const deleteCard = deleteButton.closest("[data-card]");
     const deleteCardId = deleteCard.getAttribute("id");
 
+    clearInterval(cardStates[deleteCardId].intervalId);
     deleteCard.remove();
     delete cardStates[deleteCardId];
 });
