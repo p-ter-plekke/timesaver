@@ -133,6 +133,8 @@ function startTimer(cardId) {
     const thisCard = document.getElementById(cardId);
     const thisCircle = thisCard.querySelector("[data-circle-ring]");
     const thisPriceInput = thisCard.querySelector("[data-input-price]");
+    const thisTracker = thisCard.querySelector("[data-card-tracker]");
+    const thisPlayButton = thisCard.querySelector("[data-play-button]");
     thisPriceInput.disabled = true;
     inputHourlyWage.disabled = true;
 
@@ -145,6 +147,11 @@ function startTimer(cardId) {
         cardStates[cardId].progress = circumference - (circumference * (cardStates[cardId].elapsedSeconds / (cardStates[cardId].totalMinutes * 60)));
         if (cardStates[cardId].progress <= 0) {
             thisCircle.style.strokeDashoffset = 0;
+            thisCircle.classList.add("completed");
+            thisTracker.textContent = "Finished!";
+            thisPriceInput.disabled = false;
+            inputHourlyWage.disabled = false;
+            thisPlayButton.textContent = "\u25B6";
             cardStates[cardId].isRunning = false;
             return;
         } else {
@@ -164,9 +171,16 @@ function startTimer(cardId) {
 
         if (cardStates[cardId].progress <= 0) {
             thisCircle.style.strokeDashoffset = 0;
+            thisCircle.classList.add("completed");
+            thisTracker.textContent = "Finished!";
             clearInterval(cardStates[cardId].intervalId);
+            thisPlayButton.textContent = "\u25B6";
+            thisPriceInput.disabled = false;
+            inputHourlyWage.disabled = false;
             cardStates[cardId].isRunning = false;
             return;
+        } else {
+            thisCircle.classList.remove("completed");
         };
 
         thisCircle.style.strokeDashoffset = cardStates[cardId].progress; // the smaller the progress the more you see the circle
@@ -234,10 +248,12 @@ cardBody.addEventListener("click", (event) => {
     };
 
     restartCircle.style.strokeDashoffset = circumference;
+    restartCircle.classList.remove("completed");
     restartCard.classList.remove("playing");
     restartPlayBtn.textContent = "\u25B6";
     restartInput.disabled = false;
     restartTracker.textContent = "-- min left";
+
 });
 
 // modal icon picker

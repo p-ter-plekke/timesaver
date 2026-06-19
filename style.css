@@ -186,6 +186,10 @@ input#input-price {
     stroke-width: 20;
 }
 
+.circle-ring.completed {
+    stroke: rgb(148, 223, 144);
+}
+
 .card-bottom {
     display: flex;
     justify-content: center;
