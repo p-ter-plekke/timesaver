@@ -12,8 +12,8 @@ Tech stack: HTML, CSS, vanilla JS
 
 ## Demo
 
-Live demo: https://p-ter-plekke.github.io/timesaver/ 
-Repo on GitHub: https://github.com/p-ter-plekke/timesaver 
+- Live demo: https://p-ter-plekke.github.io/timesaver/ 
+- Repo on GitHub: https://github.com/p-ter-plekke/timesaver 
 
 ## Main Features
 
@@ -34,9 +34,9 @@ The idea behind TimeSaver came from a conversation with a friend who struggled t
 
 Some challenges I encountered:
 
-* **Scalable cards**: I started with making one card work, then had to rewrite the code so the same functions could handle multiple cards and store the right state per card. I used an object with a state entry per card to achieve this. The original single-card script is still in the repo (script.js).
-* **Event delegation**: Initially I attached a new event listener to every button of each new card added to the DOM. I later learned about event delegation, so now one listener on the card body handles which button was clicked.
-* **Browser throttling**: I was incrementing elapsedSeconds++ on each interval tick, unaware that browsers throttle inactive tabs. I switched to Date.now() so the timer stays accurate even when running in the background.
+* _Scalable cards_: I started with making one card work, then had to rewrite the code so the same functions could handle multiple cards and store the right state per card. I used an object with a state entry per card to achieve this. The original single-card script is still in the repo (script.js).
+* _Event delegation_: Initially I attached a new event listener to every button of each new card added to the DOM. I later learned about event delegation, so now one listener on the card body handles which button was clicked.
+* _Browser throttling_: I was incrementing elapsedSeconds++ on each interval tick, unaware that browsers throttle inactive tabs. I switched to Date.now() so the timer stays accurate even when running in the background.
 
 ## Future ideas
 
