@@ -27,6 +27,7 @@ let cardStates = {
     "card-0": {
         isRunning: false,
         hasStarted: false,
+        startedAt: null,
         intervalId: null,
         price: "",
         totalMinutes: 0,
@@ -57,6 +58,7 @@ plusButton.addEventListener("click", () => {
     cardStates[newIdString] = {
         isRunning: false,
         hasStarted: false,
+        startedAt: null,
         intervalId: null,
         price: "",
         totalMinutes: 0,
@@ -128,7 +130,6 @@ function updateTimers(cardId) {
 };
 
 function startTimer(cardId) {
-
     const thisCard = document.getElementById(cardId);
     const thisCircle = thisCard.querySelector("[data-circle-ring]");
     const thisPriceInput = thisCard.querySelector("[data-input-price]");
@@ -152,10 +153,14 @@ function startTimer(cardId) {
     };
 
     cardStates[cardId].hasStarted = true;
+    cardStates[cardId].startedAt = Date.now() - (cardStates[cardId].elapsedSeconds * 1000);
+
     cardStates[cardId].intervalId = setInterval(() => {
 
-        cardStates[cardId].elapsedSeconds++;
-        cardStates[cardId].progress -= (circumference / (cardStates[cardId].totalMinutes * 60)); // after needed time circle is fully visible
+        const realElapsedSec = Math.floor((Date.now() - cardStates[cardId].startedAt) / 1000);
+        cardStates[cardId].elapsedSeconds = realElapsedSec;
+
+        cardStates[cardId].progress = circumference - (circumference * (realElapsedSec / (cardStates[cardId].totalMinutes * 60))); // after needed time circle is fully visible
 
         if (cardStates[cardId].progress <= 0) {
             thisCircle.style.strokeDashoffset = 0;
@@ -164,10 +169,8 @@ function startTimer(cardId) {
             return;
         };
 
-        thisCircle.style.strokeDashoffset = cardStates[cardId].progress; // the smaller progress the more you see the circle
-
-        const secondsLeft = (cardStates[cardId].totalMinutes * 60) - cardStates[cardId].elapsedSeconds;
-        cardStates[cardId].minLeft = Math.ceil(secondsLeft / 60);
+        thisCircle.style.strokeDashoffset = cardStates[cardId].progress; // the smaller the progress the more you see the circle
+        cardStates[cardId].minLeft = Math.ceil(((cardStates[cardId].totalMinutes * 60) - realElapsedSec) / 60);
         updateTimers(cardId);
 
     }, 1000); // update per second
