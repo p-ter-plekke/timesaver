@@ -43,4 +43,5 @@ Some challenges I encountered:
 - Track how many times a goal has been reached (for example, how many coffees you've earned during worked time).
 - Allow multiple timers to run at once, having the program dividing the hourly wage over the simultaneously running timers. 
 - Add more icons to the icon picker.
-- Turn the website into a web/mobile app.
+- Turn the website into a web/mobile app, using React.
+- Work with user accounts.
