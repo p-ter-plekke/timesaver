@@ -254,8 +254,6 @@ cardBody.addEventListener("click", (event) => {
 });
 
 // modal icon picker
-
-const openModalButtons = document.querySelectorAll("[data-open-modal]"); // as if there are more buttons to open modal
 const closeModalButtons = document.querySelectorAll("[data-close-modal]"); // as if there are more buttons to close modal
 const overlay = document.getElementById("overlay");
 const modalBody = document.querySelector("[data-modal-body]");
@@ -263,7 +261,6 @@ let placeholderImg = "";
 
 cardBody.addEventListener("click", (event) => {
     const openIconModal = event.target.closest("[data-open-modal]");
-    placeholderImg = openIconModal;
     if (!openIconModal) return;
     placeholderImg = openIconModal;
     const modal = document.querySelector(openIconModal.dataset.openModal);
