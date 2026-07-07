@@ -191,9 +191,9 @@ function pauseTimer(cardId) {
 
     clearInterval(cardStates[cardId].intervalId);
     cardStates[cardId].isRunning = false;
-    const thisCard = document.getElementById(cardId);
-    const thisPriceInput = thisCard.querySelector("[data-input-price]");
-    thisPriceInput.disabled = false;
+    const pauseCard = document.getElementById(cardId);
+    const pausePriceInput = pauseCard.querySelector("[data-input-price]");
+    pausePriceInput.disabled = false;
     inputHourlyWage.disabled = false;
 };
 
