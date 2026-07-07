@@ -81,8 +81,8 @@ cardBody.addEventListener("click", (event) => {
     const playCardInput = playCard.querySelector("[data-input-price]");
 
     if (cardStates[playCardId].isRunning == false) {
-        if (!cardStates[playCardId].price || !hourlyWage) {
-            alert("Please enter numbers for price and wage (e.g. 12 or 24.99).");
+        if (!cardStates[playCardId].price || !hourlyWage || cardStates[playCardId].price <= 0 || hourlyWage <= 0) {
+            alert("Please enter (positive) numbers for price and wage (e.g. 12 or 24.99).");
             if (!cardStates[playCardId].price) {
                 playCardInput.value = "";
                 cardStates[playCardId].price = "";
