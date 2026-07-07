@@ -234,6 +234,7 @@ cardBody.addEventListener("click", (event) => {
     cardStates[restartCardId] = {
         isRunning: false,
         hasStarted: false,
+        startedAt: null,
         intervalId: null,
         price: savedPrice,
         totalMinutes: 0,
