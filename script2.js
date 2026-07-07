@@ -83,11 +83,11 @@ cardBody.addEventListener("click", (event) => {
     if (cardStates[playCardId].isRunning == false) {
         if (!cardStates[playCardId].price || !hourlyWage || cardStates[playCardId].price <= 0 || hourlyWage <= 0) {
             alert("Please enter (positive) numbers for price and wage (e.g. 12 or 24.99).");
-            if (!cardStates[playCardId].price) {
+            if (!cardStates[playCardId].price || cardStates[playCardId].price <= 0) {
                 playCardInput.value = "";
                 cardStates[playCardId].price = "";
             };
-            if (!hourlyWage) {
+            if (!hourlyWage || hourlyWage <= 0) {
                 inputHourlyWage.value = "";
                 hourlyWage = "";
             };
