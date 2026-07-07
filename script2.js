@@ -119,12 +119,6 @@ function calcMinutes(cardId) {
     cardStates[cardId].totalMinutes = Math.round(cardStates[cardId].price / (hourlyWage / 60));
 };
 
-function updateTimers(cardId) {
-    const timerCard = document.getElementById(cardId);
-    const timerTarget = timerCard.querySelector("[data-card-tracker]");
-    timerTarget.textContent = `${cardStates[cardId].minLeft} min left`;
-};
-
 function startTimer(cardId) {
     const thisCard = document.getElementById(cardId);
     const thisCircle = thisCard.querySelector("[data-circle-ring]");
@@ -184,6 +178,12 @@ function startTimer(cardId) {
         updateTimers(cardId);
 
     }, 1000); // update per second
+};
+
+function updateTimers(cardId) {
+    const timerCard = document.getElementById(cardId);
+    const timerTarget = timerCard.querySelector("[data-card-tracker]");
+    timerTarget.textContent = `${cardStates[cardId].minLeft} min left`;
 };
 
 function pauseTimer(cardId) {
