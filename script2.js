@@ -106,10 +106,6 @@ cardBody.addEventListener("click", (event) => {
             });
 
             playButton.textContent = "\u23F8";
-            const allCards = document.querySelectorAll("[data-card]");
-            allCards.forEach(card => {
-                card.classList.remove("playing");
-            });
             playCard.classList.add("playing");
             startTimer(playCardId);
         };
