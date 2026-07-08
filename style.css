@@ -57,11 +57,6 @@ input#input-wage {
     width: 50px;
     border: dashed gray 1px;
     border-radius: 5px;
-}
-
-#input-wage,
-#input-price {
-    width: 80px;
     text-align: right;
 }
 
