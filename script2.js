@@ -7,6 +7,8 @@ inputHourlyWage.addEventListener("input", () => {
     hourlyWage = Number(inputHourlyWage.value);
 });
 
+// set circles
+
 const cardTemplate = document.getElementById("card-template");
 const templateCircle = cardTemplate.querySelector("[data-circle-ring]");
 const cardVisible = document.getElementById("card-0");
@@ -33,13 +35,15 @@ let cardStates = {
         totalMinutes: 0,
         progress: circumference,
         elapsedSeconds: 0,
-        secondsLeft: 0,
+        secondsLeft: 0, // kan weg
         minLeft: 0,
     },
 };
 
+// get price input (ed)
+
 cardBody.addEventListener("input", (event) => {
-    const priceInput = event.target.closest("[data-input-price]");
+    const priceInput = event.target.closest("[data-input-price]"); // bubbling (hier overbodig)
     if (!priceInput) return;
     const priceCard = priceInput.closest("[data-card]");
     const priceCardId = priceCard.getAttribute("id");
@@ -48,6 +52,7 @@ cardBody.addEventListener("input", (event) => {
 });
 
 // add new card
+
 plusButton.addEventListener("click", () => {
     const newCard = cardTemplate.cloneNode(true);
     newId += 1;
@@ -68,10 +73,12 @@ plusButton.addEventListener("click", () => {
         minLeft: 0,
     };
 
-    const newCardCircle = newCard.querySelector("[data-circle-ring]");
-    newCardCircle.style.strokeDasharray = circumference;
-    newCardCircle.style.strokeDashoffset = circumference;
+    // const newCardCircle = newCard.querySelector("[data-circle-ring]");
+    // newCardCircle.style.strokeDasharray = circumference;
+    // newCardCircle.style.strokeDashoffset = circumference;
 });
+
+// click play button
 
 cardBody.addEventListener("click", (event) => {
     const playButton = event.target.closest("[data-play-button]");
@@ -92,10 +99,10 @@ cardBody.addEventListener("click", (event) => {
                 hourlyWage = "";
             };
             return;
-        } else if (cardStates[playCardId].price === "" || hourlyWage === "") {
+        } else if (cardStates[playCardId].price === "" || hourlyWage === "") { // overbodig
             return;
         } else {
-            Object.keys(cardStates).forEach(id => {
+            Object.keys(cardStates).forEach(id => { // 1 card tegelijk
                 if (id !== playCardId && cardStates[id].isRunning) {
                     const otherCard = document.getElementById(id);
                     const otherPlayButton = otherCard.querySelector("[data-play-button]");
@@ -115,12 +122,14 @@ cardBody.addEventListener("click", (event) => {
     };
 });
 
+// hart
+
 function calcMinutes(cardId) {
     cardStates[cardId].totalMinutes = Math.round(cardStates[cardId].price / (hourlyWage / 60));
 };
 
 function startTimer(cardId) {
-    const thisCard = document.getElementById(cardId);
+    const thisCard = document.getElementById(cardId); // variable names niet consistent
     const thisCircle = thisCard.querySelector("[data-circle-ring]");
     const thisPriceInput = thisCard.querySelector("[data-input-price]");
     const thisTracker = thisCard.querySelector("[data-card-tracker]");
@@ -133,7 +142,7 @@ function startTimer(cardId) {
 
     calcMinutes(cardId);
 
-    if (cardStates[cardId].hasStarted) {
+    if (cardStates[cardId].hasStarted) { // in geval van pauze > play bij price/wage wijziging
         cardStates[cardId].progress = circumference - (circumference * (cardStates[cardId].elapsedSeconds / (cardStates[cardId].totalMinutes * 60)));
         if (cardStates[cardId].progress <= 0) {
             thisCircle.style.strokeDashoffset = 0;
@@ -154,11 +163,14 @@ function startTimer(cardId) {
 
     cardStates[cardId].intervalId = setInterval(() => {
 
-        const realElapsedSec = Math.floor((Date.now() - cardStates[cardId].startedAt) / 1000);
+        // hoeveel tijd echt verstreken
+        const realElapsedSec = Math.floor((Date.now() - cardStates[cardId].startedAt) / 1000); // want 1 tick =/= 1000ms
         cardStates[cardId].elapsedSeconds = realElapsedSec;
 
-        cardStates[cardId].progress = circumference - (circumference * (realElapsedSec / (cardStates[cardId].totalMinutes * 60))); // after needed time circle is fully visible
+        // visuele voortgang
+        cardStates[cardId].progress = circumference - (circumference * (realElapsedSec / (cardStates[cardId].totalMinutes * 60)));
 
+        // complete?
         if (cardStates[cardId].progress <= 0) {
             thisCircle.style.strokeDashoffset = 0;
             thisCircle.classList.add("completed");
@@ -173,7 +185,8 @@ function startTimer(cardId) {
             thisCircle.classList.remove("completed");
         };
 
-        thisCircle.style.strokeDashoffset = cardStates[cardId].progress; // the smaller the progress the more you see the circle
+        // update cirkel als niet complete
+        thisCircle.style.strokeDashoffset = cardStates[cardId].progress; // hoe kleiner progress hoe meer je cirkel ziet
         cardStates[cardId].minLeft = Math.ceil(((cardStates[cardId].totalMinutes * 60) - realElapsedSec) / 60);
         updateTimers(cardId);
 
@@ -208,12 +221,13 @@ cardBody.addEventListener("click", (event) => {
     const deleteCard = deleteButton.closest("[data-card]");
     const deleteCardId = deleteCard.getAttribute("id");
 
-    clearInterval(cardStates[deleteCardId].intervalId);
-    deleteCard.remove();
-    delete cardStates[deleteCardId];
+    clearInterval(cardStates[deleteCardId].intervalId); // stop interval
+    deleteCard.remove(); // verwijder uit html
+    delete cardStates[deleteCardId]; // verwijder uit states object
 });
 
 // restart card
+
 cardBody.addEventListener("click", (event) => {
     const restartButton = event.target.closest("[data-restart-button]");
     if (!restartButton) return;
@@ -254,7 +268,8 @@ cardBody.addEventListener("click", (event) => {
 });
 
 // modal icon picker
-const closeModalButtons = document.querySelectorAll("[data-close-modal]"); // as if there are more buttons to close modal
+
+const closeModalButtons = document.querySelectorAll("[data-close-modal]");
 const overlay = document.getElementById("overlay");
 const modalBody = document.querySelector("[data-modal-body]");
 let placeholderImg = "";
@@ -276,6 +291,7 @@ closeModalButtons.forEach(button => {
 });
 
 // close modal when clicking on overlay
+
 overlay.addEventListener("click", () => {
     const modals = document.querySelectorAll(".modal.active");
     modals.forEach(modal => {
@@ -294,6 +310,8 @@ function closeModal(modal) {
     modal.classList.remove("active");
     overlay.classList.remove("active");
 };
+
+// close modal when clicking icon
 
 modalBody.addEventListener("click", (event) => {
     let targetIcon = event.target;
