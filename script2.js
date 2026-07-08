@@ -298,5 +298,6 @@ function closeModal(modal) {
 modalBody.addEventListener("click", (event) => {
     let targetIcon = event.target;
     placeholderImg.src = targetIcon.src;
+    const modal = modalBody.closest(".modal");
     closeModal(modal);
 });
