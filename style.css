@@ -233,14 +233,13 @@ input#input-price {
     align-items: center;
 }
 
-.modal-header .title {
+.modal-header {
     font-size: 1.25rem;
     font-weight: bold;
 }
 
 .modal-header .close-button {
     cursor: pointer;
-    outline: none;
     font-size: 1.25rem;
     font-weight: bold;
     width: 30px;
